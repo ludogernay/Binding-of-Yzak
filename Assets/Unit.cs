@@ -33,7 +33,7 @@ public class Unit : MonoBehaviour
     {
         int fail = 0;
 
-        if (state == BattleState.PLAYERTURN && ){
+        if (state == BattleState.PLAYERTURN && playerUnit.Paralysis == true){
                 if (playerUnit.getturnp+6 >= Tour){
                     fail = Random.Range(0, 100);
                     Debug.Log("Test PARALYSIE YOU: " + fail );
@@ -47,7 +47,7 @@ public class Unit : MonoBehaviour
                     playerUnit.Paralysis = false;
         }
 
-        if (state == BattleState.ENEMYTURN && EnemyTurn.Paralysis == true){
+        if (state == BattleState.ENEMYTURN && enemyUnit.Paralysis == true){
                 if (enemyUnit.getturnp+3 >= Tour){
                     fail = Random.Range(0, 100);
                     Debug.Log("Test PARALYSIE ENEMY: " + fail );
