@@ -1,5 +1,5 @@
 .vscode/*
-Library/
+Library/ArtifactDB/*
 Logs/*
 obj/*
 Packages/*
