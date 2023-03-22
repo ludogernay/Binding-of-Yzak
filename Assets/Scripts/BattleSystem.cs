@@ -55,6 +55,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Tour = 0;
         state = BattleState.PLAYERTURN;
+        enemyUnit.Paralysis = true;
         PlayerTurn();
     }
 
@@ -112,7 +113,10 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerAttack()
     {
+        enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit, enemyUnit.onFire);
         Debug.Log("Debut du tour Joueur");
+        Debug.Log(Tour);
+        Debug.Log(playerUnit.Paralysis);
 
         attackfail = Random.Range(0, 100);//initialise une valeur entre 0 et 100 
         if (attackfail <= 10){ // fait échouer l'attaque
@@ -159,6 +163,7 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = "Coup critique !";
         }
     }  
+        Debug.Log(playerUnit.Paralysis);
         state = BattleState.TRAITEMENT;
 
         bool isDeadFire = false;
@@ -168,10 +173,17 @@ public class BattleSystem : MonoBehaviour
             playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit, playerUnit.onFire);
             dialogueText.text = "Vous êtes brulé !";
         }
+        
 
+        Debug.Log("Tour" + Tour);
 
+        if (enemyUnit.Paralysis == true){
+            enemyUnit.resetParalysis(Tour);
+            enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);
+        }
 
         yield return new WaitForSeconds(2f);
+
 
         if(isDead)
         {
@@ -191,8 +203,8 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit, playerUnit.onFire);
         Debug.Log("Debut du tour de l'ennemi ");
-
         int RandomCapacity = Random.Range(5, 5);
         if (Tour >2){
             RandomCapacity = 1;
@@ -249,7 +261,16 @@ public class BattleSystem : MonoBehaviour
             enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);
             dialogueText.text = enemyUnit.unitName + " est brulé";
         }
+
+        
         Tour++;
+        
+        if (playerUnit.Paralysis == true){
+            playerUnit.resetParalysis(Tour);
+            playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit, playerUnit.onFire);
+        }
+        
+
         if(isDead)
         {
             state = BattleState.LOST;

@@ -23,9 +23,9 @@ public class Unit : MonoBehaviour
     public bool TakeDamage(int dmg, int capacity, int Tour, Unit playerUnit, Unit enemyUnit , BattleState state )
     {
         int fail = 0;
-if (playerUnit.Paralysis == true || enemyUnit.Paralysis == true){
-            if (state == BattleState.PLAYERTURN && playerUnit.Paralysis== true){
-                    if (playerUnit.getturnp+6 >= Tour){
+        if (playerUnit.Paralysis == true || enemyUnit.Paralysis){
+            if (state == BattleState.PLAYERTURN && playerUnit.Paralysis){
+                    if (playerUnit.getturnp+5 >= Tour){
                         fail = Random.Range(0, 100);
                         Debug.Log("Test PARALYSIE YOU: " + fail );
                         if (fail > 25){
@@ -34,12 +34,12 @@ if (playerUnit.Paralysis == true || enemyUnit.Paralysis == true){
                         }
                         else playerUnit.attack = true;
                     }
-                    else if (playerUnit.getturnp+6 <= Tour)
+                    else if (playerUnit.getturnp+5 <= Tour)
                         playerUnit.Paralysis = false;
             }
 
-            if (state == BattleState.ENEMYTURN && enemyUnit.Paralysis==true){
-                    if (enemyUnit.getturnp+6 >= Tour){
+            if (state == BattleState.ENEMYTURN && enemyUnit.Paralysis){
+                    if (enemyUnit.getturnp+5 >= Tour){
                         fail = Random.Range(0, 100);
                         Debug.Log("Test PARALYSIE ENEMY: " + fail );
                         if (fail > 25){
@@ -48,7 +48,7 @@ if (playerUnit.Paralysis == true || enemyUnit.Paralysis == true){
                         }
                         else enemyUnit.attack = true;
                     }
-                    else if (enemyUnit.getturnp+6 <= Tour)
+                    else if (enemyUnit.getturnp+5 <= Tour)
                         enemyUnit.Paralysis = false;
             }
         }
@@ -155,5 +155,9 @@ if (playerUnit.Paralysis == true || enemyUnit.Paralysis == true){
             onFire = false;
         }
         return false;
+    }
+    public void resetParalysis(int Tour){
+        if (getturnp+5 <= Tour)
+            Paralysis = false;
     }
 }
