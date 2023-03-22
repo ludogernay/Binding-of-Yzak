@@ -371,7 +371,14 @@
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+<<<<<<< Updated upstream
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+=======
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+>>>>>>> Stashed changes
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.21f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -783,10 +790,17 @@
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+<<<<<<< Updated upstream
+=======
+    </Reference>
+    <Reference Include="Unity.2D.Path.Editor">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
+>>>>>>> Stashed changes
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
+<<<<<<< Updated upstream
     <Reference Include="Unity.2D.Path.Editor">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
@@ -801,12 +815,33 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+=======
+    <Reference Include="Unity.VisualScripting.Flow">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Rider.Editor">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+>>>>>>> Stashed changes
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
+<<<<<<< Updated upstream
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+=======
+    <Reference Include="Unity.Services.Core">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
+>>>>>>> Stashed changes
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
@@ -816,12 +851,24 @@
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+<<<<<<< Updated upstream
+=======
+    </Reference>
+    <Reference Include="Unity.Services.Core.Analytics">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
+>>>>>>> Stashed changes
     </Reference>
     <Reference Include="Unity.Burst">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+<<<<<<< Updated upstream
+=======
+    </Reference>
+    <Reference Include="Unity.Services.Core.Environments">
+        <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
+>>>>>>> Stashed changes
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
         <HintPath>C:\Users\ludog\Binding-of-Yzak\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
