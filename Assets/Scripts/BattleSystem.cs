@@ -64,7 +64,7 @@ public class BattleSystem : MonoBehaviour
         Tour++;
     }
 
-    public void OnAttackButton()
+        public void OnAttackButton()
     {
         if (state != BattleState.PLAYERTURN){
             return;
@@ -114,7 +114,6 @@ public class BattleSystem : MonoBehaviour
     {
         enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit, enemyUnit.onFire);
         Debug.Log("Debut du tour Joueur");
-
         attackfail = Random.Range(0, 100);//initialise une valeur entre 0 et 100 
         if (attackfail <= 10){ // fait échouer l'attaque
             dialogueText.text = "Vous avez raté !";
@@ -180,10 +179,8 @@ public class BattleSystem : MonoBehaviour
             }
         }
     }
-     yield return new WaitForSeconds(1f);
-
-        Debug.Log(playerUnit.Paralysis);
         state = BattleState.TRAITEMENT;
+        yield return new WaitForSeconds(1f);
 
         bool isDeadFire = false;
         if (playerUnit.onFire == true && isDead == false) { //Mettre les ticks de l'attaque puis du feu
