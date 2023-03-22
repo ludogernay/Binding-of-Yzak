@@ -55,7 +55,6 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Tour = 0;
         state = BattleState.PLAYERTURN;
-        enemyUnit.Paralysis = true;
         PlayerTurn();
     }
 
@@ -115,8 +114,6 @@ public class BattleSystem : MonoBehaviour
     {
         enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit, enemyUnit.onFire);
         Debug.Log("Debut du tour Joueur");
-        Debug.Log(Tour);
-        Debug.Log(playerUnit.Paralysis);
 
         attackfail = Random.Range(0, 100);//initialise une valeur entre 0 et 100 
         if (attackfail <= 10){ // fait échouer l'attaque
@@ -126,43 +123,65 @@ public class BattleSystem : MonoBehaviour
         else if (attackfail > 10 && attackfail < 90){ // fait réussir l'attaque normalement
             isDead = enemyUnit.TakeDamage(playerUnit.damage, capacity, Tour, playerUnit, enemyUnit, state);
             
-            if (playerUnit.Paralysis == true){ // vérifie si le joueur est paralysé
+            if (playerUnit.Paralysis){ // vérifie si le joueur est paralysé
                 if (playerUnit.attack == false) // vérifie si le joueur a pu attaqué
                     dialogueText.text = "Vous êtes paralysée !";
-                else 
-                    dialogueText.text = "Vous êtes paralysée mais avez réussi a attaqué !";
+                else{
+                    enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);//met a jour l'hud de l'ennemi
+                    if (capacity == 4){//permet de mettre a jour l'hud du joueur quand il se soigne
+                        playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit,playerUnit.onFire);
+                        dialogueText.text = "Vous vous êtes soigné.";
+                    }else if (capacity == 3) {
+                        dialogueText.text = "Vous avez brulé l'ennemi";
+                    }else{
+                        dialogueText.text = "Vous avez attaqué !";
+                    }
+                }
+            }else{
+                enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);//met a jour l'hud de l'ennemi
+                if (capacity == 4){//permet de mettre a jour l'hud du joueur quand il se soigne
+                    playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit,playerUnit.onFire);
+                    dialogueText.text = "Vous vous êtes  soigné.";
+                }else if (capacity == 3) {
+                    dialogueText.text = "Vous avez  brulé l'ennemi";
+                }else{
+                    dialogueText.text = "Vous avez attaqué !";
             }
-
-        enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);
-        if (capacity == 4){
-            playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit, playerUnit.onFire);
-            dialogueText.text = "Vous vous êtes soigné.";
-        }else if(capacity == 3){
-            dialogueText.text = "Vous avez brulé l'ennemi";
-        }else{
-            dialogueText.text = "L'attaque a réussi !";
         }
+
     }
+
     else if (attackfail >= 90){ // fait réussir l'attaque de manière critique (double les dégats)
         isDead = enemyUnit.TakeDamage((playerUnit.damage * 2), capacity, Tour, playerUnit, enemyUnit, state);
         
-        if (playerUnit.Paralysis == true){// vérifie si le joueur est paralysé
+        if (playerUnit.Paralysis){// vérifie si le joueur est paralysé
             if (playerUnit.attack == false)// vérifie si le joueur a pu attaqué
                 dialogueText.text = "Vous êtes paralysée !";
-            else 
-                dialogueText.text = "Vous êtes paralysée mais avez réussi a faire une attaque critique !";
+            else{
+                enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);//met a jour l'hud de l'ennemi
+                if (capacity == 4){//permet de mettre a jour l'hud du joueur quand il se soigne
+                    playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit,playerUnit.onFire);
+                dialogueText.text = "Vous vous êtes grandement soigné.";
+                }else if (capacity == 3) {
+                    dialogueText.text = "Vous avez grandement brulé l'ennemi";
+                }else{
+                    dialogueText.text = "Coup critique !";
+                }
         }
-
-        enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);//met a jour l'hud de l'ennemi
-        if (capacity == 4){//permet de mettre a jour l'hud du joueur quand il se soigne
-            playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit,playerUnit.onFire);
-            dialogueText.text = "Vous vous êtes grandement soigné.";
-        }else if (capacity == 3) {
-            dialogueText.text = "Vous avez grandement brulé l'ennemi";
         }else{
-            dialogueText.text = "Coup critique !";
+            enemyHUD.SetHP(enemyUnit.currentHP, enemyUnit.armor, enemyUnit,enemyUnit.onFire);//met a jour l'hud de l'ennemi
+                if (capacity == 4){//permet de mettre a jour l'hud du joueur quand il se soigne
+                    playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit,playerUnit.onFire);
+                dialogueText.text = "Vous vous êtes grandement soigné.";
+                }else if (capacity == 3) {
+                    dialogueText.text = "Vous avez grandement brulé l'ennemi";
+                }else{
+                    dialogueText.text = "Coup critique !";
+            }
         }
-    }  
+    }
+     yield return new WaitForSeconds(1f);
+
         Debug.Log(playerUnit.Paralysis);
         state = BattleState.TRAITEMENT;
 
@@ -205,10 +224,7 @@ public class BattleSystem : MonoBehaviour
     {
         playerHUD.SetHP(playerUnit.currentHP, playerUnit.armor, playerUnit, playerUnit.onFire);
         Debug.Log("Debut du tour de l'ennemi ");
-        int RandomCapacity = Random.Range(5, 5);
-        if (Tour >2){
-            RandomCapacity = 1;
-        }
+        int RandomCapacity = Random.Range(1, 6);
         Debug.Log("CapacityRandom ENEMY : "+RandomCapacity);
 
         attackfail = Random.Range(0, 100);//initialise une valeur entre 0 et 100 
@@ -219,7 +235,7 @@ public class BattleSystem : MonoBehaviour
         else if (attackfail > 10 && attackfail < 90){// fait réussir l'attaque normalement
             dialogueText.text = enemyUnit.unitName + " attaque !";
 
-            if (enemyUnit.Paralysis == true){ // vérifie si l'ennemi est paralysé
+            if (enemyUnit.Paralysis){ // vérifie si l'ennemi est paralysé
                 if (enemyUnit.attack == false)// vérifie si l'ennemi a pu attaqué
                     dialogueText.text = enemyUnit.unitName + " est paralysée !";
                 else 
