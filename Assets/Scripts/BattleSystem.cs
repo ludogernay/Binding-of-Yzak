@@ -11,7 +11,7 @@ public class BattleSystem : MonoBehaviour
 {
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
-
+    public SO1 so;
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
@@ -300,6 +300,7 @@ public class BattleSystem : MonoBehaviour
         if(state == BattleState.WON)
         {
             dialogueText.text = "Vous avez gagné la bataille !";
+            so.win=true;
             yield return new WaitForSeconds(3f);
             SceneManager.LoadScene("Move");
             
