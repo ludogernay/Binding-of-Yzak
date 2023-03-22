@@ -10,14 +10,49 @@ public class Unit : MonoBehaviour
     public int damage;
     public bool onFire;
 
+    public bool Paralysis ;
+    
+    public int getturnp=0;// pour récuperer les tours depuis la dernière utilisation de l'attaque de paralisie
+    public bool attack = true ;
     public int maxHP;
     public int currentHP;
 
     public int armor;
-    int getturn = 0;
+    public int getturnf = 0;
 
-    public bool TakeDamage(int dmg, int capacity, int Tour, Unit playerUnit)
+    public bool TakeDamage(int dmg, int capacity, int Tour, Unit playerUnit, Unit enemyUnit , BattleState state )
     {
+        int fail = 0;
+if (playerUnit.Paralysis == true || enemyUnit.Paralysis == true){
+            if (state == BattleState.PLAYERTURN && playerUnit.Paralysis== true){
+                    if (playerUnit.getturnp+6 >= Tour){
+                        fail = Random.Range(0, 100);
+                        Debug.Log("Test PARALYSIE YOU: " + fail );
+                        if (fail > 25){
+                            playerUnit.attack = false;
+                            return false;
+                        }
+                        else playerUnit.attack = true;
+                    }
+                    else if (playerUnit.getturnp+6 <= Tour)
+                        playerUnit.Paralysis = false;
+            }
+
+            if (state == BattleState.ENEMYTURN && enemyUnit.Paralysis==true){
+                    if (enemyUnit.getturnp+6 >= Tour){
+                        fail = Random.Range(0, 100);
+                        Debug.Log("Test PARALYSIE ENEMY: " + fail );
+                        if (fail > 25){
+                            enemyUnit.attack = false;
+                            return false;
+                        }
+                        else enemyUnit.attack = true;
+                    }
+                    else if (enemyUnit.getturnp+6 <= Tour)
+                        enemyUnit.Paralysis = false;
+            }
+        }
+
         if (capacity == 1){
             if (dmg>armor)
                 currentHP -= dmg-armor;
@@ -27,19 +62,48 @@ public class Unit : MonoBehaviour
             TakeArmorDamage(10,dmg);
         }
         if (capacity == 3){
-            getturn = Tour;
-            if (5>armor){
-                currentHP -= 5-armor;
-                onFire = true;
-            }else{
-                onFire = true;
+            if (state == BattleState.PLAYERTURN){
+                Debug.Log("Fuego -> ENEMY");
+                enemyUnit.getturnf = Tour;
+                enemyUnit.onFire = true;
+                if (5>armor){
+                    enemyUnit.currentHP -= 5-armor;
+                }
+            }
+            if (state == BattleState.ENEMYTURN){
+                Debug.Log("Fuego -> YOU");
+                playerUnit.getturnf = Tour;
+                playerUnit.onFire = true;
+                if (5>armor){
+                    playerUnit.currentHP -= 5-armor;
+                }
             }
         }
+
         if (capacity == 4)
-            playerUnit.Heal(5);
+            if (state == BattleState.PLAYERTURN){
+                Debug.Log("Heal YOU");
+                playerUnit.Heal(5);
+            }
+            else {
+                Debug.Log("Heal ENEMY");
+                enemyUnit.Heal(5);
+            }
         
-        if (getturn+5 > Tour)
-            IsOnFire(onFire);
+        if (capacity == 5){
+            if (state == BattleState.PLAYERTURN){
+                enemyUnit.getturnp = Tour;
+                enemyUnit.Paralysis = true;
+                Debug.Log("Paralyse -> ENEMY");
+            }else if (state == BattleState.ENEMYTURN){
+                playerUnit.getturnp = Tour;
+                playerUnit.Paralysis = true;
+                Debug.Log("Paralyse -> YOU");
+            }
+                currentHP -= 3;
+        }
+
+        if (capacity == 6){}// Capacité pour les attaques ratés (augmenter la valeur quand on ajoutes des compétances)
 
         if (currentHP <= 0)
         {
@@ -62,7 +126,7 @@ public class Unit : MonoBehaviour
         if (armor<=admg){
             admg = admg-armor;
             armor = 0;
-            currentHP -= admg+dmg;
+            currentHP -= 2*dmg;
         }else {
             armor -= admg;
             currentHP -= dmg;
@@ -76,18 +140,20 @@ public class Unit : MonoBehaviour
             return false;
     }
 
-    public bool IsOnFire(bool onFire)
-    {
-        
-        if (onFire)
+    public bool IsOnFire(int Tour)//calcule les dÃ©gats de feu
+    {   
+        if (onFire){
             currentHP -= 3;
-
-        if (currentHP <= 0)
-        {   
-            currentHP=0;
-            return true;
+            if (currentHP <= 0)
+            {   
+                currentHP=0;
+                return true;
+            }
         }
-        else 
-            return false;
+
+        if (getturnf+5 < Tour){
+            onFire = false;
+        }
+        return false;
     }
 }
