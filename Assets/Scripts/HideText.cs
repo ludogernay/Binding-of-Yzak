@@ -5,7 +5,6 @@ using UnityEngine;
 public class HideText : MonoBehaviour
 {
     public GameObject Object;
-    public SO1 so;
     void Start()
     {
         Object.SetActive(false);
