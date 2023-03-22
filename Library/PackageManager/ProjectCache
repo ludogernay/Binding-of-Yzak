@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638151004283299796
+      ticks: 638151083300509347
     m_Hash: 4153295679
   m_LockFileStatus:
     m_FilePath: C:/Users/ludog/Binding-of-Yzak/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638151004283299796
+      ticks: 638151083300522126
     m_Hash: 3077325015
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
