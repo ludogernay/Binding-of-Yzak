@@ -49,6 +49,7 @@ MonoBehaviour:
   unitLevel: 2
   damage: 30
   onFire: 0
+  Paralysis: 0
   maxHP: 30
   currentHP: 30
   armor: 20

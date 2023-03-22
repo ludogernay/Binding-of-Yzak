@@ -13,11 +13,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x=Input.GetAxisRaw("Horizontal");           //On récupère les input des flèches directionelles
+        movement.x=Input.GetAxisRaw("Horizontal");
         movement.y=Input.GetAxisRaw("Vertical");
         
         animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);          //On envoie les informations de déplacement à l'animation qui gère les sprites
+        animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
@@ -25,8 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {   
         if (movement.x!=0 && movement.y!=0){
             movement.x=0;
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);     //Le joueur se déplace uniquement en horizontal ou vertical
-                                                                                           //Si 2 directions sont utilisés, seule la direction verticale est retenue
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }else{
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }

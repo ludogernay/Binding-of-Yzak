@@ -2380,7 +2380,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1505888340}
         m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: OnHealButton
+        m_MethodName: OnParalysisButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2695,7 +2695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8b4356106cf8a43a5f33c8ed10ad0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  so: {fileID: 11400000, guid: 46656b97ab14a3a4eaf3cb5bfb65161f, type: 2}
   playerPrefab: {fileID: 4624860070878091193, guid: 10021f1ffb851ee42a2f9e2ce33428b7, type: 3}
   enemyPrefab: {fileID: 514230981364995875, guid: b4bcf20189f767f4c9e2633eea3295b2, type: 3}
   playerBattleStation: {fileID: 1714921347}
@@ -2984,7 +2983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Heal
+  m_text: 'paralyze
 
 '
   m_isRightToLeft: 0
