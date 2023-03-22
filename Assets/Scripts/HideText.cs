@@ -5,15 +5,33 @@ using UnityEngine;
 public class HideText : MonoBehaviour
 {
     public GameObject Object;
-    public SO1 so;
+    public So so;
+
     void Start()
     {
         Object.SetActive(false);
     }
+    
+    public void FixedUpdate() {
+        if (so.win)
+        {
+            Object.SetActive(false);
+        }
+        else
+        {
+            Object.SetActive(true);
+        }
+    }
 
     public void OnCollisionEnter2D()
     {
-        Object.SetActive(true);
+        if (so.win)
+        {
+            Object.SetActive(false);
+        }else{
+            Object.SetActive(true);
+        }
+      
     }
     public void OnCollisionExit2D()
     {

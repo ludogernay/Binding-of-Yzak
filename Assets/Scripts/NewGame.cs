@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewGame : MonoBehaviour
+public class newgame : MonoBehaviour
 {
-    public SO1 so;
+    public So so;
+
+    public void NxtSceneCombat(){
+        SceneManager.LoadScene("SampleScene");
+    }
     public void NxtSceneMove(){
-        so.win=false;
+        so.win = false;
         SceneManager.LoadScene("Move");
     }
 }
