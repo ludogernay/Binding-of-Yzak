@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Library/PackageCache/com.unity.collab-proxy@2.0.1/Editor/PlasticSCM/Toolbar.meta
 guid: 179c164d2bd086e478add6825f3b422d
+========
+guid: 8788044310827b745915c1a386d2ef79
+>>>>>>>> Stashed changes:Library/PackageCache/com.unity.2d.pixel-perfect@5.0.3/Editor/Converter.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
